@@ -33,6 +33,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.weatherapp.ui.theme.WeatherAppTheme
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.weatherapp.ui.screens.CurrentWeatherScreen
+import com.example.weatherapp.ui.screens.DailyForecastScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -96,37 +99,22 @@ fun DisplayUI() {
 
 @Composable
 fun NavHostContainer(navController: NavHostController, modifier: Modifier = Modifier) {
+    val mainViewModel: MainViewModel = viewModel()
+
     NavHost(
         navController = navController,
         startDestination = Screen.CurrentWeather.route,
         modifier = modifier
     ) {
         composable(Screen.CurrentWeather.route) {
-            CurrentWeatherScreen()
+            CurrentWeatherScreen(viewModel = mainViewModel)
         }
         composable(Screen.Forecast.route) {
-            ForecastScreen()
+            DailyForecastScreen(viewModel = mainViewModel)
         }
     }
 }
 
-@Composable
-fun CurrentWeatherScreen() {
-    Text(
-        text = "Current Weather Screen",
-        style = MaterialTheme.typography.headlineMedium,
-        modifier = Modifier.padding(16.dp)
-    )
-}
-
-@Composable
-fun ForecastScreen() {
-    Text(
-        text = "Weather Forecast Screen",
-        style = MaterialTheme.typography.headlineMedium,
-        modifier = Modifier.padding(16.dp)
-    )
-}
 
 // Sealed class for defining screens
 sealed class Screen(val route: String) {

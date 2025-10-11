@@ -1,4 +1,4 @@
-package com.exmaple.weatherapp.ui.screens
+package com.example.weatherapp.ui.screens  // Fix typo: com.exmaple -> com.example
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -10,17 +10,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.weatherapp.MainViewModel
 import com.example.weatherapp.R
-import java.time.LocalDate
 
 @Composable
 fun DailyForecastScreen(viewModel: MainViewModel) {
-    val forecast = viewModel.forecast
+    val forecast = viewModel.weatherData.forecast
 
     LazyColumn(modifier = Modifier.padding(16.dp)) {
         items(forecast.size) { index ->
             val day = forecast[index]
             Column(modifier = Modifier.padding(vertical = 8.dp)) {
-                Text(text = "Date: ")
+                Text(text = "Date: ${day.date}")
                 Image(
                     painter = painterResource(id = R.drawable.ic_weather_placeholder),
                     contentDescription = "Weather Icon",
@@ -35,5 +34,3 @@ fun DailyForecastScreen(viewModel: MainViewModel) {
         }
     }
 }
-
-

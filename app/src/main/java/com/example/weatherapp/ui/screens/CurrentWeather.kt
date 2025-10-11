@@ -13,7 +13,7 @@ import com.example.weatherapp.R
 
 @Composable
 fun CurrentWeatherScreen(viewModel: MainViewModel) {
-    val weather = viewModel.currentWeather
+    val currentWeather = viewModel.weatherData.current
 
     Column(
         modifier = Modifier.fillMaxSize().padding(16.dp),
@@ -24,10 +24,11 @@ fun CurrentWeatherScreen(viewModel: MainViewModel) {
             contentDescription = "Weather Icon",
             modifier = Modifier.size(100.dp)
         )
-        Text(text = "Condition: ${weather?.condition ?: "Sunny"}")
-        Text(text = "Temperature: ${weather?.temperature ?: "--"}°C")
+        Text(text = "Condition: ${currentWeather.condition}")
+        Text(text = "Temperature: ${currentWeather.temperature}°C")
         Text(text = "Precipitation: Rain, 2mm")
         Text(text = "Wind: NW, 15 km/h")
+        Text(text = "Humidity: ${currentWeather.humidity}%")
     }
 }
 

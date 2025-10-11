@@ -1,25 +1,41 @@
 package com.example.weatherapp
 
 import androidx.lifecycle.ViewModel
+import com.example.weatherapp.models.Current
+import com.example.weatherapp.models.Forecast
 import com.example.weatherapp.models.Weather
 
-annotation class Weather(
-    val temperature: Double,
-    val condition: String,
-    val humidity: Int,
-    val windSpeed: Double
-)
 class MainViewModel : ViewModel() {
-    val currentWeather = Weather(
-        temperature = 19.0,
-        condition = "Partly Cloudy",
-        humidity = 50,
-        windSpeed = 5.0
-    )
-
-    val forecast = listOf(
-        Weather(19.0, "Sunny", 30, 1.0),
-        Weather(24.0, "Rainy", 80, 15.0),
-        Weather(18.0, "Cloudy", 65, 8.0)
+    // Create a Weather object with placeholder data
+    val weatherData = Weather(
+        current = Current(
+            temperature = 19.0,
+            condition = "Partly Cloudy",
+            humidity = 50,
+            windSpeed = 5.0
+        ),
+        forecast = listOf(
+            Forecast(
+                date = "Today",
+                temperature = 19.0,
+                condition = "Sunny",
+                humidity = 30,
+                windSpeed = 1.0
+            ),
+            Forecast(
+                date = "Tomorrow",
+                temperature = 24.0,
+                condition = "Rainy",
+                humidity = 80,
+                windSpeed = 15.0
+            ),
+            Forecast(
+                date = "Day after",
+                temperature = 18.0,
+                condition = "Cloudy",
+                humidity = 65,
+                windSpeed = 8.0
+            )
+        )
     )
 }
